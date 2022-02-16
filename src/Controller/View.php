@@ -17,7 +17,7 @@ class View {
     authCheck();
 
     [$path, $idx] = $arg;
-    
+
     // $idx 값 view로 넘기기
     view('test', ["idx" => $idx]);
   }

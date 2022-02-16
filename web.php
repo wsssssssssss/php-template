@@ -1,21 +1,17 @@
 <?php
-  use src\Route;
+// 형식은 Path@Controller@Function
 
-  // 형식은 Path@Controller@Function
+// get method
+$get(
+  '/@View@index',
+  '/register@View@register',
+  '/login@View@login',
+  '/logout@User@logout',
+  '/test/:id@View@test',
+);
 
-  // get method
-  Route::GET(
-    '/@View@index',
-    '/register@View@register',
-    '/login@View@login',
-    '/logout@User@logout',
-    '/test/:id@View@test',
-  );
-
-  // post method
-  Route::POST(
-    '/register@User@register',
-    '/login@User@login',
-  );
-
-  Route::init();
+// post method
+$post(
+  '/register@User@register',
+  '/login@User@login',
+);

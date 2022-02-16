@@ -1,52 +1,49 @@
 <?php
 
-namespace src;
+$db = null;
 
-class DB {
-  static $db;
+function get(){
+  if(!$db){
+    $option = [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
 
-  static function get(){
-    if(!self::$db){
-      $option = [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
-
-      self::$db = new \PDO("mysql:host=localhost;dbname=dbname;charset=utf8mb4", "root", "", $option);
-    }
-    return self::$db;
+    $db = new \PDO("mysql:host=localhost;dbname=dbname;charset=utf8mb4", "root", "", $option);
   }
 
-  static function query($sql, $data = []){
-    $q = self::get()->prepare($sql);
+  return $db;
+}
 
-    try {
-      $d = $q->execute($data);
+function query($sql, $data = []) {
+  $q = get()->prepare($sql);
 
-      return $d;
-    } catch {
-      return false;
-    }
-  }
+  // try {
+    $d = $q->execute($data);
 
-  static function fetch($sql, $data = []){
-    $q = self::get()->preapre($sql, $data);
+    return $d;
+  // } catch {
+  //   return false;
+  // }
+}
 
-    $row = $q->execute($data);
+function fetch($sql, $data = []) {
+  $q = get()->preapre($sql, $data);
 
-    return $row->fetch();
-  }
+  $row = $q->execute($data);
 
-  static function fetchAll($sql, $data = []){
-    $q = self::get()->preapre($sql, $data);
+  return $row->fetch();
+}
 
-    $row = $q->execute($data);
+function fetchAll($sql, $data = []) {
+  $q = get()->preapre($sql, $data);
 
-    return $row->fetchAll();
-  }
+  $row = $q->execute($data);
 
-  static function find($table, $id){
-    return self::fetch("SELECT * FROM `$table` WHERE id = ?", [$id]);
-  }
+  return $row->fetchAll();
+}
 
-  static function lastInsertId(){
-    return self::get()->lastInsertId();
-  }
+function find($table, $id) {
+  return fetch("SELECT * FROM `$table` WHERE id = ?", [$id]);
+}
+
+function lastInsertId(){
+  return get()->lastInsertId();
 }
