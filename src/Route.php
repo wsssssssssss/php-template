@@ -42,4 +42,4 @@ function call($name, $args){
 }
 
 $get = fn(...$args) => call("GET", $args);
-$post = fn(...$args) => call("GET", $args);
+$post = fn(...$args) => call("POST", $args);

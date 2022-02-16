@@ -1,9 +1,10 @@
 <?php
+
 namespace src\Controller;
 
 class View {
   function index() {
-    view('index');
+    view('index', ["data" => $data ]);
   }
   function login() {
     view('auth/login');
