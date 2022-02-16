@@ -14,9 +14,9 @@ class Route {
   }
 
   static function init() {
-    // 현재 url 가져옴
-    $url = explode("?", $_SERVER['REQUEST_URI'])[0];
-    
+    // 현재 url 가져옴 /test/1?idx=1에서 querystirng 분리
+    [$url] = explode("?", $_SERVER['REQUEST_URI']);
+
     // web.php에서 세팅한 page 루프 돔
     foreach(self::$pages as $p){
       // @ 기준으로 나눠서 path, controller 이름, class 내부 method 이름 가져옴
@@ -28,7 +28,7 @@ class Route {
 			$reg = preg_replace("/\//","\\/", $reg);
 			$reg = "/^".$reg."$/";
       
-      // /^\/test\/:([^/]+)$/는 /test/1234에 매칭됨
+      // /^\/test\/([^/]+)$/는 /test/1234에 매칭됨
       // preg_match의 세번째 인자인 $r은 매칭값을 가져옴 ([$fullPath, $gorup1, $group2, ...])
       // 위 test 기준으로는 ['/test/1234', '1234'] 이렇게 내려오는거
       if(preg_match($reg, $url, $r)){

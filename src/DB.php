@@ -27,15 +27,19 @@ class DB {
   }
 
   static function fetch($sql, $data = []){
-    $q = self::query($sql, $data);
+    $q = self::get()->preapre($sql, $data);
 
-    return $q->fetch();
+    $row = $q->execute($data);
+
+    return $row->fetch();
   }
 
   static function fetchAll($sql, $data = []){
-    $q = self::query($sql, $data);
+    $q = self::get()->preapre($sql, $data);
 
-    return $q->fetchAll();
+    $row = $q->execute($data);
+
+    return $row->fetchAll();
   }
 
   static function find($table, $id){

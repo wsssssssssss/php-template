@@ -11,7 +11,7 @@
     '/logout@User@logout',
     '/test/:id@View@test',
   );
-  
+
   // post method
   Route::POST(
     '/register@User@register',

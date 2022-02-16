@@ -49,7 +49,7 @@ function authCheck() {
 }
 
 // view 함수 $d는 view php file에서 사용할 값들
-function view($l,$d = []){
+function view($l, $d = []){
 	extract($d);
 
 	require "src/View/header.php";
