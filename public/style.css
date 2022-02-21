@@ -1,0 +1,53 @@
+* {margin: 0;padding: 0;box-sizing:border-box;}
+html, body, .app {
+  min-height: 100vh;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+}
+header {
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+}
+footer {
+  height: 60px;
+  border-top: 1px solid #ddd;
+}
+main {
+  flex: 1;
+}
+
+.flex{display: flex;}
+.grid{display: grid;}
+
+
+/* 앨범 페이지 */
+main .album .btns{gap: 10px;}
+main .album .item-container{width: 75%; height: 100%; margin: 0 auto; grid-template-columns: repeat(4, 1fr); gap: 20px;}
+main .album .item-container .item{width: 300px; height: 300px;}
+main .album .item-container .item h3{text-align: center; margin-top: 10px;}
+main .album .item-container .item .photo{width: 90%; height: 90%; margin: 0 auto; border: 1px solid #333; border-radius: 5px; overflow: hidden;}
+main .album .item-container .item .photo img{width: 100%; height: 100%; object-fit: cover; cursor: pointer;}
+main .album .page-nation{width: 1200px; margin: 50px auto; justify-content: center; align-items: center; gap: 10px;}
+main .album .page-nation .action{background: #000; color: #fff;}
+
+
+/* 리스트 페이지 */
+main .list .btns{gap: 10px;}
+main .list table, tr, th, td{border: 1px solid #333; border-left: none; border-right: none;}
+main .list table{width: 1200px; margin: 0 auto; border-collapse: collapse; line-height: 30px; text-align: center;}
+main .list .page-nation{width: 1200px; margin: 50px auto; justify-content: center; align-items: center; gap: 10px;}
+main .list .page-nation .action{background: #000; color: #fff;}
+
+
+/* 월간공연일정(달력) 페이지 */
+main .calendar{width: 80%; margin: 0 auto;}
+main .calendar .days{margin: 50px auto; text-align: center; justify-content: center; align-items: flex-end; gap: 10px;}
+main .calendar .item-container{width: 900px; margin: 0 auto; text-align: center; grid-template-columns: repeat(7, 1fr); align-items: center; gap: 3px;}
+main .calendar .item-container #week{height: 30px; line-height: 30px;}
+main .calendar .item-container .item{background: #eee; height: 120px;}
+
+
+
+
