@@ -15,6 +15,8 @@ $get(
   '/calendar@View@calendar',
   '/year@View@year',
   '/insertsch@View@insertsch',
+  '/showdetail@View@showdetail',
+  '/showdelete@View@showdelete',
   '/test/:id@View@test',
 );
 
@@ -24,5 +26,6 @@ $post(
   '/insertcul@View@insertculPro',
   '/culdetail@View@culupdate',
   '/insertsch@View@insertschPro',
+  '/showdetail@View@showupdate',
   '/login@User@login',
 );

@@ -27,41 +27,29 @@
             <div class="item" id="week">T</div>
             <div class="item" id="week">F</div>
             <div class="item" id="week">S</div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
+
+            <?php for($n = 1, $i = 0; $i < $total_week; $i++): ?>
+                <?php for($j = 0; $j < 7; $j++): ?>
+                    <div class="item flex">
+                        <?php if( ($n > 1 || $j >= $start_week) && ($total_day >= $n)  ): ?>
+                            <p><?=$n ?></p>
+                            <?php foreach($showlist as $item): ?>
+                                <?php if($n < 10 && $n) {
+                                    $n = str_replace('0', '', $n);
+                                    $n = "0{$n}";
+                                } ?>
+                                <?php if( substr($item->showDate, 0, 10) == "{$year}-{$month}-{$n}" ): ?>
+                                    <a href="/showdetail?showUid=<?=$item->showUid ?>">
+                                        <p class="title"><?=$item->showName ?></p>
+                                    </a>
+                                <?php endif;?>
+                            <?php endforeach; ?>
+                            <?php $n++; ?>
+                        <?php endif; ?>
+                    </div>
+                <?php endfor; ?>
+            <?php endfor; ?>
+
         </div>
     </div>
 </main>
