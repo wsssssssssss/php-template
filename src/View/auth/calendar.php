@@ -39,9 +39,24 @@
                                     $n = "0{$n}";
                                 } ?>
                                 <?php if( substr($item->showDate, 0, 10) == "{$year}-{$month}-{$n}" ): ?>
-                                    <a href="/showdetail?showUid=<?=$item->showUid ?>">
-                                        <p class="title"><?=$item->showName ?></p>
-                                    </a>
+                                    <?php 
+                                        $d_day = intval( (strtotime(date('Y-m-d', time())) - strtotime(substr($item->showDate, 0, 10))) / 86400 );
+                                    ?>
+                                    <div class="title flex">
+                                        <a href="/showdetail?showUid=<?=$item->showUid ?>">
+                                            <p><?=$item->showName ?></p>
+                                        </a>
+                                        <?php if($d_day < 0): ?>
+                                            <span class="d_day">
+                                                D<?=$d_day ?>
+                                            </span>
+                                        <?php elseif($d_day == 0): ?>
+                                            <span class="d_day">
+                                                D-Day
+                                            </span>
+                                        <?php endif; ?>
+
+                                    </div>
                                 <?php endif;?>
                             <?php endforeach; ?>
                             <?php $n++; ?>

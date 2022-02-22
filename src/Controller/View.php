@@ -170,7 +170,15 @@ class View {
   }
 
   function year() {
-    view('/auth/year');
+    $year = isset($_GET['year']) ? $_GET['year'] : date('Y');
+
+    $result = DB::fetchAll("SELECT * FROM showlist");
+
+    echo "<pre>";
+    var_dump($result[0]->showDate);
+    echo "</pre>";
+
+    view('/auth/year', ['showlist' => $result, 'year' => $year]);
   }
 
   function insertsch() {
@@ -189,10 +197,6 @@ class View {
     $showUid = $_GET['showUid'];
 
     $result = DB::fetch("SELECT * FROM showlist WHERE showUid = ?", [$showUid]);
-
-    echo "<pre>";
-    var_dump($result);
-    echo "</pre>";
 
     view('/auth/showdetail', ['showlist' => $result]);
   }

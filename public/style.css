@@ -49,9 +49,16 @@ main .calendar .item-container #week{height: 30px; padding: 0; line-height: 30px
 main .calendar .item-container .item{background: #eee; padding: 5px; height: 120px; align-items: flex-end; flex-direction: column; gap: 10px;}
 
 
-main .calendar .item-container .item p{text-align: right;}
-main .calendar .item-container .item a{width: 70%;}
-main .calendar .item-container .item a .title{width: 100%; overflow: hidden; text-overflow: ellipsis; line-height: 30px; border: 1px solid #333; border-radius: 5px; white-space: nowrap; cursor: pointer;}
+main .calendar .item-container .item .title{width: 100%; line-height: 30px; justify-content: flex-end; gap: 10px; border: 1px solid #333; border-radius: 5px; cursor: pointer;}
+main .calendar .item-container .item .title .d_day{color: red;}
 
 
+/* 연간공열일정 페이지 */
+main .year{width: 60%; margin: 0 auto;}
+main .year .days{margin: 50px auto; text-align: center; justify-content: center; align-items: flex-end; gap: 10px;}
+main .year .months{grid-template-columns: repeat(2, 1fr);}
+main .year .months .month{min-height: 200px; padding: 10px;}
+main .year .months .month .num{font-size: 25px; margin-bottom: 10px;}
 
+main .year .months .month .title{width: 100%; line-height: 30px; gap: 10px; border: 1px solid #333; border-radius: 5px;}
+main .year .months .month .title .d_day{color: red;}
