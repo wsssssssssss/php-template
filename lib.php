@@ -61,7 +61,7 @@ function view($fileName, $d = []){
 	require "src/View/footer.php";
 }
 
-// item 가져오는 함수
+// item 가져오는 함수 (이 부분은 그냥 extract를 사용해도 됨 extract($_GET), extract($_POST) 형식으로)
 function getItems($tg, ...$names) {
   return array_map(function ($name) use ($tg) {
     return $tg[$name];
@@ -75,3 +75,4 @@ function get(...$names) {
 function post(...$names) {
   return getItems($_POST, ...$names);
 }
+// item 가져오는 함수 //
