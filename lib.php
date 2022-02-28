@@ -56,3 +56,18 @@ function view($fileName, $d = []){
 	require "src/View/$fileName.php";
 	require "src/View/footer.php";
 }
+
+// item 가져오는 함수
+function getItems($tg, ...$names) {
+  return array_map(function ($name) use ($tg) {
+    return $tg[$name];
+  }, $names);
+}
+
+function get(...$names) {
+  return getItems($_GET, ...$names);
+}
+
+function post(...$names) {
+  return getItems($_POST, ...$names);
+}

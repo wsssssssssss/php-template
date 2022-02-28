@@ -1,43 +1,41 @@
 <?php
 
-$db = null;
+class DB {
+  static $db = null;
+  static function get() {
+    if (!self::$db) {
+      $option = [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
 
-function get(){
-  if(!$db){
-    $option = [\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
+      self::$db = new \PDO("mysql:host=localhost;dbname=test;charset=utf8mb4", "root", "", $option);
+    }
 
-    $db = new \PDO("mysql:host=localhost;dbname=dbname;charset=utf8mb4", "root", "", $option);
+    
+    return self::$db;
   }
-
-  return $db;
 }
 
 function query($sql, $data = []) {
-  $q = get()->prepare($sql);
+  $q = DB::get()->prepare($sql);
 
-  // try {
-    $d = $q->execute($data);
+  try {
+    $q->execute($data);
 
-    return $d;
-  // } catch {
-  //   return false;
-  // }
+    return $q;
+  } catch(Exception $e) {
+    return false;
+  }
 }
 
 function fetch($sql, $data = []) {
-  $q = get()->preapre($sql, $data);
+  $q = query($sql, $data);
 
-  $row = $q->execute($data);
-
-  return $row->fetch();
+  return $q ? $q->fetch() : $q;
 }
 
 function fetchAll($sql, $data = []) {
-  $q = get()->preapre($sql, $data);
+  $q = query($sql, $data);
 
-  $row = $q->execute($data);
-
-  return $row->fetchAll();
+  return $q ? $q->fetchAll() : $q;
 }
 
 function find($table, $id) {
@@ -45,5 +43,5 @@ function find($table, $id) {
 }
 
 function lastInsertId(){
-  return get()->lastInsertId();
+  return DB::get()->lastInsertId();
 }

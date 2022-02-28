@@ -10,13 +10,26 @@
     html, body, .app {
       min-height: 100vh;
     }
+    li { list-style: none; }
     .app {
       display: flex;
       flex-direction: column;
     }
     header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       height: 60px;
+      padding: 0 60px;
       border-bottom: 1px solid #ddd;
+    }
+    header > div {
+      display: flex;
+      gap: 30px;
+    }
+    header ul {
+      display: flex;
+      gap: 30px;
     }
     footer {
       height: 60px;
@@ -31,12 +44,17 @@
   <div class="app">
     <header>
       Header
-      <a href="/">Main</a>
-      <?php if (ss()): ?>
-        <a href="/test/1234">Test</a>
-        <a href="/logout">Logout</a>
-      <?php else: ?>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-      <?php endif ?>
+      <div>
+      <?php if (ss()) { echo ss()->email; } ?>
+      <ul>
+        <li><a href="/">Main</a></li>
+        <?php if (ss()): ?>
+          <li><a href="/test/1234">Test</a></li>
+          <li><a href="/logout">Logout</a></li>
+        <?php else: ?>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Register</a></li>
+        <?php endif ?>
+      </ul>
+      </div>
     </header>

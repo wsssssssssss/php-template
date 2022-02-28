@@ -4,7 +4,7 @@ namespace src\Controller;
 
 class View {
   function index() {
-    view('index', ["data" => $data ]);
+    view('index');
   }
   function login() {
     view('auth/login');
@@ -12,6 +12,7 @@ class View {
   function register() {
     view('auth/register');
   }
+
   // Route에서 넘겨준 $r의 값을 받아옴
   function test($arg) {
     // login 여부를 체크함
@@ -19,7 +20,9 @@ class View {
 
     [$path, $idx] = $arg;
 
+    $user = find('user', $idx);
+
     // $idx 값 view로 넘기기
-    view('test', ["idx" => $idx]);
+    view('test', ["idx" => $idx, "user" => $user]);
   }
 }
