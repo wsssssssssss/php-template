@@ -22,6 +22,9 @@ function query($sql, $data = []) {
 
     return $q;
   } catch(Exception $e) {
+    // 제출전 제거
+    echo "$e->getMessage() <br />";
+
     return false;
   }
 }

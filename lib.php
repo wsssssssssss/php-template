@@ -9,6 +9,10 @@ spl_autoload_register(function ($f) {
 
 // echo 대신 사용함
 function e($t) {
+  if (in_array(gettype($t), ['object', 'array'])) {
+    return print_r($t);
+  }
+
   echo "<pre>$t</pre>";
 }
 
